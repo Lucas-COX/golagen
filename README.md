@@ -1,15 +1,15 @@
-<h1 align="center" style="border-bottom: none">Lagen</h1>
+<h1 align="center" style="border-bottom: none">Golagen</h1>
 <h3 align="center">Project generator based on Terraform and AWS lambda</h3>
 
 <p align="center">
     <a href="https://github.com/semantic-release/semantic-release">
         <img alt="Semantic Release" src="https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release">
     </a>
-    <a href="https://github.com/Lucas-COX/lagen/releases">
-        <img alt="Last release" src="https://img.shields.io/github/v/release/Lucas-COX/lagen">
+    <a href="https://github.com/Lucas-COX/golagen/releases">
+        <img alt="Last release" src="https://img.shields.io/github/v/release/Lucas-COX/golagen">
     </a>
-    <a href="https://github.com/Lucas-COX/lagen/releases">
-        <img alt="Release date" src="https://img.shields.io/github/release-date/Lucas-COX/lagen">
+    <a href="https://github.com/Lucas-COX/golagen/releases">
+        <img alt="Release date" src="https://img.shields.io/github/release-date/Lucas-COX/golagen">
     </a>
 </p>
 
@@ -19,45 +19,45 @@ Please note that this is not functional and being developped for the moment.
 
 
 ## Requirements
-In order to use lagen, you need the following packages :
+In order to use golagen, you need the following packages :
 - npm >= 5.2.0
-- python >= 3.10.0
+- go >= 1.21.0
 
 
 ## Installation
 
 ### Local Installation
 
-Use the following commands to install **lagen** directly in your project's directory and run it :
+Use the following commands to install **golagen** directly in your project's directory and run it :
 > npm
 ```bash
-npm install --save-dev @lucas-cox/lagen
-npx lagen
+npm install --save-dev @lucas-cox/golagen
+npx golagen
 ```
 
 > yarn
 ```bash
-yarn add --dev@lucas-cox/lagen
-yarn run lagen
+yarn add --dev@lucas-cox/golagen
+yarn run golagen
 ```
 
 
-Make sure that a `.lagen` directory exists, with a valid `main.yml` file.
+Make sure that a `.golagen` directory exists, with a valid `main.yml` file.
 
 ### Global Installation
-Use the following command to install **lagen** globally and run it :
+Use the following command to install **golagen** globally and run it :
 > npm
 ```bash
-npx lagen [path_to_project]
+npx golagen [path_to_project]
 ```
 
 > yarn
 ```bash
-yarn global add @lucas-cox/lagen
-lagen [path_to_project]
+yarn global add @lucas-cox/golagen
+golagen [path_to_project]
 ```
 
-Make sure that a `.lagen` directory exists in the root of your project directory, with a valid `main.yml` file.
+Make sure that a `.golagen` directory exists in the root of your project directory, with a valid `main.yml` file.
 
 
 ## In development

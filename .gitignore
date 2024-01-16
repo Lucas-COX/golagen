@@ -7,6 +7,10 @@
 *.dll
 *.so
 *.dylib
+out/bin/*
+
+# Keep architecture
+!out/bin/.gitkeep
 
 # Test binary, built with `go test -c`
 *.test

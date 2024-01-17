@@ -34,7 +34,7 @@ entries:
       - aws-access-key-id
 
   - name: todos
-    method:
+    methods:
       - GET
       - POST
     route: /todos

@@ -1,12 +1,16 @@
 BINARY_NAME	:= golagen
-OUT_FOLDER  := out/bin
+OUT_FOLDER  := ./out/bin
+SOURCE_DIR	:= ./cmd/golagen
 
 build:
-	@go build -o $(OUT_FOLDER)/$(BINARY_NAME) cmd/golagen/main.go
+	@go build -o $(OUT_FOLDER)/$(BINARY_NAME) $(SOURCE_DIR)
 
 clean:
 	@go clean
 	@rm $(OUT_FOLDER)/$(BINARY_NAME)
+
+install:
+	@go mod tidy
 
 run: build
 	@$(OUT_FOLDER)/$(BINARY_NAME)
@@ -14,7 +18,7 @@ run: build
 vendor:
 	@go mod vendor
 
-.DEFAULT_GOAL = vendor
+.DEFAULT_GOAL = install
 
 .PHONY: build \
 		clean \

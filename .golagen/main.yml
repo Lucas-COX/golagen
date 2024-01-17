@@ -1,0 +1,51 @@
+# This is a configuration file for a simple todo application backend
+project: golagen
+author: lucas-cox
+
+environment:
+  aws-default-region: eu-central-1
+  aws-access-key-secret: test
+  aws-access-key-id: testid
+
+entries:
+  - name: users
+    methods:
+      - GET
+      - POST
+    route: /users
+    environment:
+      - aws-default-region
+
+  - name: auth
+    methods:
+      - POST
+    route: /auth/:action
+    mods:
+      github.com/golang-jwt/jwt: 5.2.0
+
+  - name: user
+    methods:
+      - GET
+      - PUT
+      - DELETE
+    route: /users/:id
+    environment:
+      - aws-access-key-secret
+      - aws-access-key-id
+
+  - name: todos
+    method:
+      - GET
+      - POST
+    route: /todos
+    rules:
+      - name: test
+        prerules:
+          - pretest
+        command: echo "This is a custom rule"
+        environment:
+          - aws-access-key-secret
+      - name: pretest
+        command: echo "This happens before a custom rule"
+      - name: install
+        command: echo "This is my custom install command"

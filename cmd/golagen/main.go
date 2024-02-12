@@ -5,8 +5,6 @@ import (
 	"os"
 
 	"Lucas-COX/golagen/internal"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
 func main() {
@@ -22,5 +20,13 @@ func main() {
 		log.Fatalf("invalid configuration file: %s.\n", err.Error())
 	}
 
-	spew.Dump(config)
+	err = internal.CheckPrerequisities()
+	if err != nil {
+		log.Fatalf("unmet prerequisities: %s.\n", err.Error())
+	}
+
+	err = Generate(*config)
+	if err != nil {
+		log.Fatalf("an error occured while generating files: %s.\n", err.Error())
+	}
 }

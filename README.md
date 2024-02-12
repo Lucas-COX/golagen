@@ -62,7 +62,7 @@ Make sure that a `.golagen` directory exists in the root of your project directo
 
 ## In development
 
-- Generate a go lambda monorepo using an **aws-sam** based architecture, generating the SAM template file, wrapped in a Makefile
+- Generate a go lambda monorepo using an **aws-sam** based architecture, generating the [SAM template file](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorial-lambda-sam-create-lambda-function.html), wrapped in a Makefile
 - Generate a Makefile calling all the lambda ones and regenerating them if needed
 - Add custom rules to the generated Makefile for each entry and for the global one
 - Deploy particular lambdas, using aws-sam if possible else aws-cli

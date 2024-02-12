@@ -10,7 +10,7 @@ func ReadConfigFile(p *string) (*Config, error) {
 	if p != nil {
 		viper.SetConfigFile(*p)
 	} else {
-		viper.SetConfigFile("./configs/golagen.yml")
+		viper.SetConfigFile("./configs/golagen.yaml")
 	}
 
 	err := viper.ReadInConfig()

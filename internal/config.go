@@ -1,14 +1,16 @@
-package main
+package internal
 
 import (
 	"fmt"
+	"reflect"
 
 	"github.com/samber/lo"
 	"github.com/spf13/viper"
 )
 
-func ReadConfigFile(path *string) error {
-	viper.SetConfigName(".golagen/main")
+func ReadConfigFile(path *string) (*Config, error) {
+	var config *Config = nil
+	viper.SetConfigName("configs/golagen")
 	viper.SetConfigType("yaml")
 
 	if path != nil {
@@ -17,7 +19,12 @@ func ReadConfigFile(path *string) error {
 		viper.AddConfigPath(".")
 	}
 
-	return viper.ReadInConfig()
+	err := viper.ReadInConfig()
+	if err != nil {
+		return nil, err
+	}
+	err = viper.Unmarshal(&config)
+	return config, err
 }
 
 func checkConfigEntry(entry map[string]interface{}) error {
@@ -42,6 +49,7 @@ func CheckConfigFile() error {
 		if !viper.InConfig(key) {
 			return fmt.Errorf("missing required key \"%s\"", key)
 		}
+		fmt.Printf("%s: %s\n", key, reflect.TypeOf(viper.Get(key)))
 	}
 	entries := viper.Get("entries").([]interface{})
 	for i, entry := range entries {

@@ -32,29 +32,29 @@ Use the following commands to install **golagen** directly in your project's dir
 > npm
 ```bash
 npm install --save-dev @lucas-cox/golagen
-npx golagen
+npx golagen [config_file_name (default: "configs/golagen.yml")]
 ```
 
 > yarn
 ```bash
 yarn add --dev@lucas-cox/golagen
-yarn run golagen
+yarn run golagen [config_file_name (default: "configs/golagen.yml")]
 ```
 
 
-Make sure that a `.golagen` directory exists, with a valid `main.yml` file.
+Make sure that a `configs` directory exists, with a valid golagen configuration file.
 
 ### Global Installation
 Use the following command to install **golagen** globally and run it :
 > npm
 ```bash
-npx golagen [path_to_project]
+npx golagen [config_file_name (default: "golagen.yml")]
 ```
 
 > yarn
 ```bash
 yarn global add @lucas-cox/golagen
-golagen [path_to_project]
+golagen [config_file_name (default: "golagen.yml")]
 ```
 
 Make sure that a `.golagen` directory exists in the root of your project directory, with a valid `main.yml` file.
@@ -62,9 +62,7 @@ Make sure that a `.golagen` directory exists in the root of your project directo
 
 ## In development
 
-- Generate a lambda monorepo using a terraform friendly architecture, giving the sample terraform files, wrapped in a Makefile
-- Generate a Makefile calling all the projects ones
-- Parse the configuration file before generating to avoid catching exceptions during generation
-- Make some configuration parameters mandatory
+- Generate a go lambda monorepo using an **aws-sam** based architecture, generating the SAM template file, wrapped in a Makefile
+- Generate a Makefile calling all the lambda ones and regenerating them if needed
 - Add custom rules to the generated Makefile for each entry and for the global one
-- Let user choose if script creates a Makefile rule or not
+- Deploy particular lambdas, using aws-sam if possible else aws-cli

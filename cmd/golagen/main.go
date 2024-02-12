@@ -1,29 +1,26 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
-	"github.com/spf13/viper"
+	"Lucas-COX/golagen/internal"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 func main() {
 	var err error = nil
+	var config *internal.Config = nil
 
 	if len(os.Args) > 1 {
-		err = ReadConfigFile(&os.Args[1])
+		config, err = internal.ReadConfigFile(&os.Args[1])
 	} else {
-		err = ReadConfigFile(nil)
+		config, err = internal.ReadConfigFile(nil)
 	}
 	if err != nil {
 		log.Fatalf("invalid configuration file: %s.\n", err.Error())
 	}
 
-	err = CheckConfigFile()
-	if err != nil {
-		log.Fatalf("invalid configuration file: %s.\n", err.Error())
-	}
-
-	fmt.Printf("%v\n", viper.AllKeys())
+	spew.Dump(config)
 }

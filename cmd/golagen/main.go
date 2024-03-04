@@ -7,10 +7,16 @@ import (
 	"Lucas-COX/golagen/internal"
 )
 
+var (
+	version   string
+	buildTime string
+)
+
 func main() {
 	var err error = nil
 	var config *internal.Config = nil
 
+	log.Printf("golagen version \"%s\", build %s", version, buildTime)
 	if len(os.Args) > 1 {
 		config, err = internal.ReadConfigFile(&os.Args[1])
 	} else {
@@ -20,13 +26,11 @@ func main() {
 		log.Fatalf("invalid configuration file: %s.\n", err.Error())
 	}
 
-	err = internal.CheckPrerequisities()
-	if err != nil {
+	if err = internal.CheckPrerequisities(); err != nil {
 		log.Fatalf("unmet prerequisities: %s.\n", err.Error())
 	}
 
-	err = Generate(*config)
-	if err != nil {
+	if err = Generate(*config); err != nil {
 		log.Fatalf("an error occured while generating files: %s.\n", err.Error())
 	}
 }

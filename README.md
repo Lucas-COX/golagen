@@ -66,3 +66,4 @@ Make sure that a `.golagen` directory exists in the root of your project directo
 - Generate a Makefile calling all the lambda ones and regenerating them if needed
 - Add custom rules to the generated Makefile for each entry and for the global one
 - Deploy particular lambdas, using aws-sam if possible else aws-cli
+- Use semantic release to have a decent versionning and build the release binary using the version number and build time

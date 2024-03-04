@@ -2,11 +2,7 @@ module Lucas-COX/golagen
 
 go 1.21.4
 
-require (
-	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
-	github.com/samber/lo v1.39.0
-	github.com/spf13/viper v1.18.2
-)
+require github.com/spf13/viper v1.18.2
 
 require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect

@@ -27,3 +27,6 @@ go.work
 # Test files
 tests/*
 !tests/.golagen
+
+# Templates folder
+templates/

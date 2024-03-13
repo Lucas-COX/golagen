@@ -2,11 +2,13 @@ package template
 
 import (
 	"bytes"
-	"log"
+
+	log "github.com/sirupsen/logrus"
+
 	"regexp"
 )
 
-func ApplyReplacements(content []byte, replacements map[string]string) ([]byte, error) {
+func ApplyReplacements(content []byte, replacements map[string]string, dest string) ([]byte, error) {
 	var buffer bytes.Buffer
 	var placeholderRegex *regexp.Regexp = regexp.MustCompile(`\{\{(\w+)\}\}`)
 
@@ -23,7 +25,7 @@ func ApplyReplacements(content []byte, replacements map[string]string) ([]byte, 
 		replacement, ok := replacements[placeholderName]
 		if !ok {
 			buffer.WriteString(placeholderName)
-			log.Printf("no replacement found for placeholder %s", placeholderName)
+			log.WithFields(log.Fields{"placeholder": placeholderName, "file": dest}).Warn("no replacement found")
 		}
 
 		buffer.WriteString(replacement)

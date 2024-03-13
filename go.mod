@@ -2,7 +2,10 @@ module Lucas-COX/golagen
 
 go 1.21.4
 
-require github.com/spf13/viper v1.18.2
+require (
+	github.com/sirupsen/logrus v1.9.3
+	github.com/spf13/viper v1.18.2
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect

@@ -5,10 +5,11 @@ import (
 	"Lucas-COX/golagen/pkg/template"
 	"Lucas-COX/golagen/pkg/utils"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"sync"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func copyWithReplacement(file string, dest string, project internal.Project) error {
@@ -16,9 +17,13 @@ func copyWithReplacement(file string, dest string, project internal.Project) err
 	if err != nil {
 		return err
 	}
-	content, err = template.ApplyReplacements(content, map[string]string{
-		"module_name": fmt.Sprintf("%s/%s", project.Author, project.Name),
-	})
+	content, err = template.ApplyReplacements(
+		content,
+		map[string]string{
+			"module_name": fmt.Sprintf("%s/%s", project.Author, project.Name),
+		},
+		dest,
+	)
 	if err != nil {
 		return err
 	}
@@ -59,7 +64,7 @@ func GenerateSources(entries *[]internal.Entry, project internal.Project) error 
 
 	templateDir := filepath.Join(internal.GetCachePath(), "templates", "go1.x")
 	for _, entry := range *entries {
-		log.Printf("Generating source files for %s...\n", entry.Name)
+		log.WithField("entry", entry.Name).Info("Generating source files")
 		wg.Add(1)
 		go func(e internal.Entry) {
 			defer wg.Done()
@@ -67,7 +72,7 @@ func GenerateSources(entries *[]internal.Entry, project internal.Project) error 
 				return generateSource(e, project, templateDir)
 			}, e.Name)
 			if err != nil {
-				log.Fatalln(err.Error())
+				log.WithField("entry", e.Name).Error(err.Error())
 			}
 		}(entry)
 	}

@@ -6,7 +6,7 @@ BUILD_TIME		:= $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 VERSION			?= $(shell git branch --show-current)
 
 build:
-	go build -o $(OUT_FOLDER)/$(BINARY_NAME) -ldflags "  \
+	@go build -o $(OUT_FOLDER)/$(BINARY_NAME) -ldflags "  \
 	-X $(PACKAGE_NAME)/internal.version=$(VERSION)		 \
 	-X $(PACKAGE_NAME)/internal.buildTime=$(BUILD_TIME)" \
 	$(SOURCE_DIR)
@@ -20,6 +20,9 @@ install:
 
 run: build
 	@$(OUT_FOLDER)/$(BINARY_NAME)
+
+test: build
+	@cd tests && ../$(OUT_FOLDER)/$(BINARY_NAME) --verbose
 
 vendor:
 	@go mod vendor

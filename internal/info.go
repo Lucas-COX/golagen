@@ -8,7 +8,7 @@ var (
 )
 
 func BuildInfo() string {
-	return fmt.Sprintf("golagen version %s, build %s", version, buildTime)
+	return fmt.Sprintf("golagen %s, build %s", version, buildTime)
 }
 
 func GetVersion() string {

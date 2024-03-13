@@ -3,7 +3,9 @@ package generate
 import (
 	"Lucas-COX/golagen/internal"
 	"Lucas-COX/golagen/pkg/utils"
-	"log"
+
+	log "github.com/sirupsen/logrus"
+
 	"os"
 )
 
@@ -22,6 +24,6 @@ func FetchTemplates() error {
 		return err
 	}
 
-	log.Println("Fetching aws templates...")
+	log.Info("Fetching aws templates")
 	return nil
 }

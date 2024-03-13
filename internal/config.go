@@ -4,14 +4,10 @@ import (
 	"github.com/spf13/viper"
 )
 
-func ReadConfigFile(p *string) (*Config, error) {
+func ReadConfigFile(p string) (*Config, error) {
 	var config *Config = nil
 
-	if p != nil {
-		viper.SetConfigFile(*p)
-	} else {
-		viper.SetConfigFile("./configs/golagen.yaml")
-	}
+	viper.SetConfigFile(p)
 
 	err := viper.ReadInConfig()
 	if err != nil {

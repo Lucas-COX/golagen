@@ -1,24 +1,40 @@
 package main
 
 import (
-	"log"
-	"os"
+	"flag"
+
+	log "github.com/sirupsen/logrus"
 
 	"Lucas-COX/golagen/internal"
 )
+
+var configFile string
+var verbose bool
+
+func init() {
+	log.SetFormatter(&log.TextFormatter{
+		FullTimestamp:   true,
+		TimestampFormat: "2006-01-02 15:04:05",
+	})
+	flag.StringVar(&configFile, "config", "./configs/golagen.yaml", "Path to the configuration file")
+	flag.BoolVar(&verbose, "verbose", false, "Enable verbose output")
+	flag.Parse()
+
+	if verbose {
+		log.SetLevel(log.DebugLevel)
+	} else {
+		log.SetLevel(log.WarnLevel)
+	}
+}
 
 func main() {
 	var err error = nil
 	var config *internal.Config = nil
 
-	log.Println(internal.BuildInfo())
-	if len(os.Args) > 1 {
-		config, err = internal.ReadConfigFile(&os.Args[1])
-	} else {
-		config, err = internal.ReadConfigFile(nil)
-	}
+	log.Info(internal.BuildInfo())
+	config, err = internal.ReadConfigFile(configFile)
 	if err != nil {
-		log.Fatalf("invalid configuration file: %s.\n", err.Error())
+		log.WithField("config", configFile).Fatalf("invalid configuration file: %s.\n", err.Error())
 	}
 
 	if err = internal.CheckPrerequisities(); err != nil {

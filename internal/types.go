@@ -16,8 +16,13 @@ type Entry struct {
 	Rules       *[]Rule            `mapstructure:"rules,omitempty"`
 }
 
+type Project struct {
+	Name   string `mapstructure:"name"`
+	Author string `mapstructure:"author"`
+}
+
 type Config struct {
-	Project     string             `mapstructure:"project"`
+	Project     Project            `mapstructure:"project"`
 	Author      string             `mapstructure:"author"`
 	Entries     *[]Entry           `mapstructure:"entries,omitempty"`
 	Environment *map[string]string `mapstructure:"environment,omitempty"`

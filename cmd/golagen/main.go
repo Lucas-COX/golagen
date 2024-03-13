@@ -7,16 +7,11 @@ import (
 	"Lucas-COX/golagen/internal"
 )
 
-var (
-	version   string
-	buildTime string
-)
-
 func main() {
 	var err error = nil
 	var config *internal.Config = nil
 
-	log.Printf("golagen version \"%s\", build %s", version, buildTime)
+	log.Println(internal.BuildInfo())
 	if len(os.Args) > 1 {
 		config, err = internal.ReadConfigFile(&os.Args[1])
 	} else {

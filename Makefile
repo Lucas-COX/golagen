@@ -1,7 +1,7 @@
 BINARY_NAME		:= golagen
 PACKAGE_NAME 	:= Lucas-COX/golagen
 OUT_FOLDER  	:= ./out/bin
-SOURCE_DIR		:= ./cmd/golagen
+SOURCE_DIR		:= .
 BUILD_TIME		:= $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 VERSION			?= $(shell git branch --show-current)
 
@@ -22,7 +22,7 @@ run: build
 	@$(OUT_FOLDER)/$(BINARY_NAME)
 
 test: build
-	@cd tests && ../$(OUT_FOLDER)/$(BINARY_NAME) --verbose
+	@cd tests && ../$(OUT_FOLDER)/$(BINARY_NAME) generate -v
 
 vendor:
 	@go mod vendor

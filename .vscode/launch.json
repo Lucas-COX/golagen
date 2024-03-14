@@ -9,8 +9,9 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/cmd/golagen",
-            "cwd": "${workspaceFolder}/tests"
+            "program": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/tests",
+            "args": "generate"
         }
     ]
 }

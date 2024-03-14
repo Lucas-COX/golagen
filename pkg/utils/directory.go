@@ -1,6 +1,10 @@
 package utils
 
-import "os"
+import (
+	"os"
+	"path"
+	"strings"
+)
 
 func ExecuteInDirectory(fn func() error, dir string) error {
 	originalDir, err := os.Getwd()
@@ -22,4 +26,16 @@ func ExecuteInDirectory(fn func() error, dir string) error {
 		return err
 	}
 	return fnerr
+}
+
+func GenerateRelativePath(base string, dest string, sep string) string {
+	dir := path.Dir(base)
+	index := strings.LastIndex(dir, sep)
+
+	if index != -1 {
+		result := base[index+len(sep):]
+		return path.Join(".", dest, result)
+	} else {
+		return ""
+	}
 }
